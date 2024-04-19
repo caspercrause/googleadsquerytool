@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "googleadsquerytool"
-version = "0.1.4"
+version = "0.1.5"
 description = "This is a package you can use to query reporting data from the Google Ads API."
 authors = ["caspercrause <ccrause07@gmail.com>"]
 readme = "README.md"

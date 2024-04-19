@@ -1,8 +1,8 @@
 from google.ads.googleads.client import GoogleAdsClient
 import pandas as pd
 from google.ads.googleads.errors import GoogleAdsException
-import sys
 from re import match
+import enum
 
 class GoogleAdsDataFetcher:
     def __init__(self, customer_id):
@@ -31,8 +31,6 @@ class GoogleAdsQueryBuilder:
             WHERE 
                 {where}
             """
-        # Check if WHERE clause is already present in the statement
-        where_present = 'WHERE' in statement
 
         # Add filter for removing zero impressions
         if remove_zero_impressions:
@@ -88,6 +86,9 @@ class GoogleAdsDataProcessor:
         data = row
         for sub_key in key.split('.'):
             data = getattr(data, sub_key)
+            # Check if an object is an instance of any enum type
+            if is_enum(data):
+                data = data.name
         # If the key indicates a micros value, convert it to a regular number
         if match(pattern='.*(_micros)$|.*(cost).*|.*(_cpa)$', string=key):
             data /= 1e6
@@ -99,7 +100,7 @@ class GoogleAdsDataRetriever:
         self.query_builder = GoogleAdsQueryBuilder()
         self.data_processor = GoogleAdsDataProcessor()
 
-    def get_data(self, query_fields, headers, from_resource_name, start_date=None, end_date=None, where=None, remove_zero_impressions=True):
+    def get_data(self, query_fields, from_resource_name, headers=None, start_date=None, end_date=None, where=None, remove_zero_impressions=True):
         query = self.query_builder.generate_query(query_fields, from_resource_name, start_date, end_date, where, remove_zero_impressions)
         response = self.data_fetcher.fetch_data(query)
         data = self.data_processor.process_response(response, query_fields, headers=headers)
@@ -107,3 +108,12 @@ class GoogleAdsDataRetriever:
 
 def create_dict(input_list):
     return {key: [] for key in input_list}
+
+# Function to check if an object is an instance of any enum type
+def is_enum(obj):
+    for name in dir(enum):
+        member = getattr(enum, name)
+        if isinstance(member, type) and issubclass(member, enum.Enum):
+            if isinstance(obj, member):
+                return True
+    return False
