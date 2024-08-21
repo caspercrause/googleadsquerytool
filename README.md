@@ -14,7 +14,7 @@ pip install googleadsquerytool
 ```
 ## Features
  - Distributed via PyPI.
- - Wrapper around the Google Ads API vir easy reporting.
+ - Wrapper around the Google Ads API for easy reporting.
  - Returns data in the form of a pandas DataFrame.
 
  ## Example usage
