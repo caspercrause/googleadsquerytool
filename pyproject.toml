@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "googleadsquerytool"
-version = "0.1.5"
+version = "0.1.6"
 description = "This is a package you can use to query reporting data from the Google Ads API."
 authors = ["caspercrause <ccrause07@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-google-ads = "==22.1.0"
+google-ads = "==25.0.0"
 pandas = ">1.4"
 
 [build-system]
