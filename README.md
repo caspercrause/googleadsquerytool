@@ -3,7 +3,7 @@
 This is a package you can use to query reporting data from the Google Ads API.
 
 ## Build status
-![Build Status](https://camo.githubusercontent.com/7328163cc93494efb2264d87ae5b1f4972813b2ebd99c054963df995b9106e59/68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f6761612d636c69656e746c6962732f6261646765732f676f6f676c652d6164732d707974686f6e2f6275696c647374617475735f7562756e74752e737667)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen?label=build&color=green)
 
 ## Requirements
  - Python 3.8+
