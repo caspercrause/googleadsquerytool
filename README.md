@@ -1,4 +1,4 @@
-# GoogleAdsQueryTool ![Latest Version](https://img.shields.io/badge/pypi-0.1.6-blue?&link=https%3A%2F%2Fpypi.org%2Fproject%2Fgoogleadsquerytool%2F)
+# GoogleAdsQueryTool [![Latest Version](https://img.shields.io/badge/pypi-0.1.6-blue?&link=https%3A%2F%2Fpypi.org%2Fproject%2Fgoogleadsquerytool%2F)](https://pypi.org/project/googleadsquerytool/)
 
 This is a package you can use to query reporting data from the Google Ads API.
 
