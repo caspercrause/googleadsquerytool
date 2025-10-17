@@ -1,4 +1,8 @@
-# GoogleAdsQueryTool [![Latest Version](https://img.shields.io/badge/pypi-0.1.6-blue?&link=https%3A%2F%2Fpypi.org%2Fproject%2Fgoogleadsquerytool%2F)](https://pypi.org/project/googleadsquerytool/)
+# GoogleAdsQueryTool [![PyPI Version](https://img.shields.io/pypi/v/googleadsquerytool.svg)](https://pypi.org/project/googleadsquerytool/)
+
+
+## Number of Downloads per month
+![Downloads](https://img.shields.io/pypi/dm/googleadsquerytool)
 
 This is a package you can use to query reporting data from the Google Ads API.
 
@@ -6,7 +10,9 @@ This is a package you can use to query reporting data from the Google Ads API.
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen?label=build&color=lime)
 
 ## Requirements
- - Python 3.8+
+[![Python Versions](https://img.shields.io/pypi/pyversions/googleadsquerytool)](https://pypi.org/project/googleadsquerytool/)
+
+- **Python 3.9+**
 
 ## Installation
 ```
@@ -38,6 +44,9 @@ ads_data = create_dict(fields)
 # Create client object:
 client = GoogleAdsDataRetriever(customer_id='Customer_id_that_your_mcc_account_has_access_to')
 
+# Optional: If your Google Ads configuration file is in a custom location or has a custom name:
+# client = GoogleAdsDataRetriever(customer_id='Customer_id_that_your_mcc_account_has_access_to', config_path='/path/to/your_config.yaml')
+
 # Make a request to the API:
 google_ads_data_df = client.get_data(
     query_fields=ads_data, 
@@ -50,6 +59,18 @@ google_ads_data_df = client.get_data(
  ```
 
  For some queries, such as those involving campaign labels, start and end dates cannot be specified, nor can zero-impression rows be removed. In these cases, you can leave these fields blank.
+
+## Configuration File
+
+By default, the library looks for a Google Ads configuration file named `google-ads.yaml` in your home directory. If your configuration file is in a different location or has a different name, you can specify the path using the `config_path` parameter:
+
+```python
+# Using a custom configuration file path
+client = GoogleAdsDataRetriever(
+    customer_id='Customer_id_that_your_mcc_account_has_access_to',
+    config_path='/path/to/your_custom_config.yaml'
+)
+```
 
  ```
 fields = ['campaign.name', 'label.name', 'label.status', 'label.text_label.background_color']

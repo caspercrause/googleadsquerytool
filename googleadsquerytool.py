@@ -5,9 +5,12 @@ from re import match
 import enum
 
 class GoogleAdsDataFetcher:
-    def __init__(self, customer_id):
+    def __init__(self, customer_id, config_path=None):
         self.customer_id = customer_id.replace('-', '')
-        self.client = GoogleAdsClient.load_from_storage()
+        if config_path:
+            self.client = GoogleAdsClient.load_from_storage(config_path)
+        else:
+            self.client = GoogleAdsClient.load_from_storage()
         self.ga_service = self.client.get_service("GoogleAdsService")
 
     def fetch_data(self, query):
@@ -95,8 +98,8 @@ class GoogleAdsDataProcessor:
         return data
 
 class GoogleAdsDataRetriever:
-    def __init__(self, customer_id):
-        self.data_fetcher = GoogleAdsDataFetcher(customer_id)
+    def __init__(self, customer_id, config_path=None):
+        self.data_fetcher = GoogleAdsDataFetcher(customer_id, config_path)
         self.query_builder = GoogleAdsQueryBuilder()
         self.data_processor = GoogleAdsDataProcessor()
 
